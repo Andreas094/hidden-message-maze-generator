@@ -169,7 +169,7 @@ def print_path(path, width, height):
   print('-'*(width + 2))
 
 
-def make_maze(path, width, height, message):
+def make_maze(path, width, height, FR3331):
   path_set = frozenset(path)
   begin = path[0]
   end = path[-1]
@@ -198,14 +198,14 @@ shortest path from BEGIN to END in the maze. Sometimes the generator fails, but
 80% of the time it works every time.'''
 
   assert sys.argv[1], 'Need cmdline argument to write file to'
-  path_size = len(message) + 1
+  path_size = len(FR3331) + 1
 
   path = create_path(path_size)
   height = max(p[1] for p in path) + min(p[1] for p in path)
   width = max(p[0] for p in path) + min(p[0] for p in path)
 
   print_path(path, width, height)
-  maze = make_maze(path, width, height, message)
+  maze = make_maze(path, width, height, FR3331)
 
   with open(sys.argv[1], 'w') as f:
     json.dump({'maze': maze}, f)
